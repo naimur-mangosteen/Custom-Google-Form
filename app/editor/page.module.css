@@ -1,0 +1,135 @@
+.editorLayout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 300px;
+    background: white;
+    border-right: 1px solid var(--border);
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    overflow-y: auto;
+}
+
+.sidebarTitle {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+}
+
+.previewArea {
+    flex: 1;
+    background: #f3f4f6;
+    display: flex;
+    align-items: center;
+    /* Center strictly? or allow scroll? */
+    justify-content: center;
+    padding: var(--spacing-xl);
+    overflow-y: auto;
+    min-height: 100vh;
+}
+
+.controlGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.controlGroup label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.controlGroup input[type="color"] {
+    width: 100%;
+    height: 40px;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+}
+
+.controlGroup select {
+    padding: 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+}
+
+.embedButton {
+    margin-top: auto;
+    background: var(--text-main);
+    color: white;
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    border: none;
+    font-weight: 600;
+    transition: opacity 0.2s;
+}
+
+.embedButton:hover {
+    opacity: 0.9;
+}
+
+/* Modal */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+}
+
+.modal {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    width: 90%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.codeBlock {
+    width: 100%;
+    height: 200px;
+    font-family: monospace;
+    padding: 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: #f8f9fa;
+    resize: none;
+}
+
+.modalActions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+.modalActions button {
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    background: white;
+    font-weight: 500;
+}
+
+.modalActions button:first-child {
+    /* Copy Code button */
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
