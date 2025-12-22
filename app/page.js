@@ -12,6 +12,9 @@ export default function Home() {
           </p>
           <UrlInput />
         </div>
+        <footer className={styles.footer}>
+          Made with 💚 by Naimur Rahman
+        </footer>
       </div>
     </main>
   );

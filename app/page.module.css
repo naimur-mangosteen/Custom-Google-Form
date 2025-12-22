@@ -2,8 +2,13 @@
   min-height: 100vh;
   display: flex;
   align-items: center;
+  /* Keeps visual centering */
   justify-content: center;
   background: linear-gradient(135deg, #E0E7FF 0%, #F3F4F6 100%);
+  padding: 2rem 0;
+  /* Add padding to prevent cut-off */
+  flex-direction: column;
+  /* Allow stacking */
 }
 
 .title {
@@ -21,4 +26,13 @@
   color: var(--text-secondary);
   font-size: 1.125rem;
   margin-bottom: var(--spacing-xl);
+}
+
+.footer {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  margin-top: 15vh;
+  /* Pushes it down to ensure scrolling is needed */
+  opacity: 0.8;
 }
