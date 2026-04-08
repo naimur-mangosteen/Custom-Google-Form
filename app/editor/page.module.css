@@ -23,6 +23,22 @@
     margin-bottom: var(--spacing-sm);
 }
 
+.backButton {
+    align-self: flex-start;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 0.875rem;
+    padding: 0;
+    margin-bottom: var(--spacing-sm);
+}
+
+.backButton:hover {
+    color: var(--text-main);
+    text-decoration: underline;
+}
+
 .previewArea {
     flex: 1;
     background: #f3f4f6;

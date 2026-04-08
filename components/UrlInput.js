@@ -13,8 +13,9 @@ export default function UrlInput() {
         if (!url) return;
 
         // Basic validation
-        if (!url.includes('docs.google.com/forms')) {
-            alert('Please enter a valid Google Form URL');
+        const googleFormRegex = /^https:\/\/docs\.google\.com\/forms\/d\/(e\/)?[a-zA-Z0-9_-]+\/viewform/;
+        if (!googleFormRegex.test(url)) {
+            alert('Please enter a valid Google Form URL (ending in /viewform)');
             return;
         }
 

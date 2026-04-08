@@ -1,18 +1,20 @@
 'use client';
 
 import { useState, useEffect, Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import FormPreview from '@/components/FormPreview';
 import styles from './page.module.css';
 
 function Editor() {
     const searchParams = useSearchParams();
+    const router = useRouter();
     const url = searchParams.get('url');
 
     const [form, setForm] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [embedOpen, setEmbedOpen] = useState(false);
+    const [copied, setCopied] = useState(false);
 
     // Theme State
     const [theme, setTheme] = useState({
@@ -72,6 +74,12 @@ function Editor() {
 
     const handleThemeChange = (key, value) => {
         setTheme(prev => ({ ...prev, [key]: value }));
+    };
+
+    const handleCopy = () => {
+        navigator.clipboard.writeText(getEmbedCode());
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
     };
 
     const getEmbedCode = () => {
@@ -165,12 +173,31 @@ ${css}
     };
 
     if (!url) return <div className="container">No URL provided</div>;
-    if (loading) return <div className="container">Loading form...</div>;
-    if (error) return <div className="container">Error: {error}</div>;
+
+    if (loading || error) {
+        return (
+            <div className={styles.editorLayout}>
+                <aside className={styles.sidebar}>
+                    <button className={styles.backButton} onClick={() => router.push('/')}>
+                        &larr; Back
+                    </button>
+                    <h2 className={styles.sidebarTitle}>Customize</h2>
+                </aside>
+                <main className={styles.previewArea}>
+                    <div className="container">
+                        {loading ? 'Loading form...' : `Error: ${error}`}
+                    </div>
+                </main>
+            </div>
+        );
+    }
 
     return (
         <div className={styles.editorLayout}>
             <aside className={styles.sidebar}>
+                <button className={styles.backButton} onClick={() => router.push('/')}>
+                    &larr; Back
+                </button>
                 <h2 className={styles.sidebarTitle}>Customize</h2>
 
                 <div className={styles.controlGroup}>
@@ -217,7 +244,9 @@ ${css}
                         <h3>Embed Code</h3>
                         <textarea readOnly className={styles.codeBlock} value={getEmbedCode()} />
                         <div className={styles.modalActions}>
-                            <button onClick={() => navigator.clipboard.writeText(getEmbedCode())}>Copy Code</button>
+                            <button onClick={handleCopy}>
+                                {copied ? 'Copied!' : 'Copy Code'}
+                            </button>
                             <button onClick={() => setEmbedOpen(false)}>Close</button>
                         </div>
                     </div>
