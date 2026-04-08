@@ -13,7 +13,7 @@ export async function GET(request) {
         const formData = await parseGoogleForm(url);
         return NextResponse.json(formData);
     } catch (error) {
-        console.erro('Parser error:', error);
+        console.error('Parser error:', error);
         return NextResponse.json({ error: 'Failed to parse form. Ensure it is a valid public Google Form.' }, { status: 500 });
     }
 }
