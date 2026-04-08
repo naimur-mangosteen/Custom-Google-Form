@@ -1,68 +1,53 @@
 .previewContainer {
     width: 100%;
-    padding: 2rem;
-    background-color: #f3f4f6;
-    /* Outer preview background */
+    max-width: 680px;
     font-family: var(--theme-font);
-    display: flex;
-    justify-content: center;
+    color: var(--theme-text);
 }
 
 .formCard {
     background-color: var(--theme-bg);
     color: var(--theme-text);
     border-radius: var(--theme-radius);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    padding: 2rem;
+    padding: 44px 44px 40px;
     width: 100%;
-    max-width: 600px;
+    border: 1px solid color-mix(in srgb, var(--theme-text) 12%, transparent);
 }
 
 .header {
-    margin-bottom: 2rem;
-    border-bottom: 1px solid #e5e7eb;
-    padding-bottom: 1rem;
+    margin-bottom: 32px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid color-mix(in srgb, var(--theme-text) 12%, transparent);
 }
 
 .title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
 }
 
 .description {
-    color: #6b7280;
-    font-size: 0.875rem;
+    color: color-mix(in srgb, var(--theme-text) 65%, transparent);
+    font-size: 0.95rem;
+    line-height: 1.5;
 }
 
-.form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.fieldWrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
+.form { display: flex; flex-direction: column; gap: 26px; }
+.fieldWrapper { display: flex; flex-direction: column; gap: 8px; }
 
 .label {
     font-weight: 700;
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
     display: block;
+    letter-spacing: 0.01em;
 }
-
-.required {
-    color: #ef4444;
-    margin-left: 0.25rem;
-}
-
+.required { color: var(--theme-accent); margin-left: 4px; }
 .helpText {
     font-size: 0.8rem;
-    color: #6b7280;
-    margin-top: -0.25rem;
+    color: color-mix(in srgb, var(--theme-text) 60%, transparent);
+    margin-top: -2px;
 }
 
 /* Inputs */
@@ -70,47 +55,127 @@
 .textarea,
 .select {
     width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #d1d5db;
-    border-radius: 4px;
-    /* Local radius or theme? usually input radius is standardized */
+    padding: 12px 14px;
+    border: 1px solid color-mix(in srgb, var(--theme-text) 25%, transparent);
+    border-radius: var(--theme-radius);
     font-size: 1rem;
-    background: white;
+    background: transparent;
+    color: var(--theme-text);
+    font-family: inherit;
+    transition: border-color 0.15s, box-shadow 0.15s;
 }
-
 .textInput:focus,
 .textarea:focus,
 .select:focus {
-    outline: 2px solid var(--theme-primary);
-    border-color: transparent;
+    outline: none;
+    border-color: var(--theme-primary);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--theme-primary) 18%, transparent);
 }
 
-.radioGroup,
-.checkboxGroup {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.radioLabel,
-.checkboxLabel {
+.radioGroup, .checkboxGroup { display: flex; flex-direction: column; gap: 10px; }
+.radioLabel, .checkboxLabel {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 10px;
     cursor: pointer;
+    font-size: 0.95rem;
 }
+.radioLabel input, .checkboxLabel input { accent-color: var(--theme-primary); width: 16px; height: 16px; }
 
 .submitButton {
     background-color: var(--theme-primary);
-    color: white;
-    padding: 0.75rem 1.5rem;
+    color: var(--theme-bg);
+    padding: 14px 28px;
     border: none;
-    border-radius: 4px;
-    font-weight: 600;
+    border-radius: var(--theme-radius);
+    font-weight: 700;
+    font-size: 1rem;
     align-self: flex-start;
-    margin-top: 1rem;
+    margin-top: 12px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: transform 0.15s, opacity 0.15s;
+}
+.submitButton:hover { transform: translateY(-1px); opacity: 0.92; }
+
+/* ─── VARIANTS ─── */
+
+/* Brutalist: hard borders, offset shadow */
+.variant_brutalist .formCard {
+    border: 2.5px solid var(--theme-text);
+    box-shadow: 14px 14px 0 var(--theme-text);
+}
+.variant_brutalist .textInput,
+.variant_brutalist .textarea,
+.variant_brutalist .select {
+    border: 2px solid var(--theme-text);
+    background: color-mix(in srgb, var(--theme-text) 4%, transparent);
+}
+.variant_brutalist .submitButton {
+    border: 2px solid var(--theme-text);
+    box-shadow: 5px 5px 0 var(--theme-text);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+.variant_brutalist .submitButton:hover { box-shadow: 7px 7px 0 var(--theme-text); }
+
+/* Minimal: ultra-clean, hairline borders */
+.variant_minimal .formCard { border: none; padding: 32px; }
+.variant_minimal .textInput,
+.variant_minimal .textarea,
+.variant_minimal .select {
+    border: none;
+    border-bottom: 1.5px solid color-mix(in srgb, var(--theme-text) 30%, transparent);
+    border-radius: 0;
+    padding: 10px 2px;
+    background: transparent;
+}
+.variant_minimal .textInput:focus,
+.variant_minimal .textarea:focus,
+.variant_minimal .select:focus {
+    box-shadow: none;
+    border-bottom-color: var(--theme-primary);
 }
 
-.submitButton:hover {
-    opacity: 0.9;
+/* Soft: pill inputs, soft shadow */
+.variant_soft .formCard {
+    box-shadow: 0 30px 60px -20px color-mix(in srgb, var(--theme-primary) 22%, transparent);
+    border: none;
+}
+.variant_soft .textInput,
+.variant_soft .textarea,
+.variant_soft .select {
+    background: color-mix(in srgb, var(--theme-primary) 6%, transparent);
+    border: 1px solid color-mix(in srgb, var(--theme-primary) 14%, transparent);
+}
+.variant_soft .submitButton {
+    box-shadow: 0 14px 24px -10px color-mix(in srgb, var(--theme-primary) 60%, transparent);
+}
+
+/* Dark: glow accent */
+.variant_dark .formCard {
+    border: 1px solid color-mix(in srgb, var(--theme-text) 18%, transparent);
+}
+.variant_dark .textInput,
+.variant_dark .textarea,
+.variant_dark .select {
+    background: color-mix(in srgb, var(--theme-text) 6%, transparent);
+    border-color: color-mix(in srgb, var(--theme-text) 18%, transparent);
+}
+.variant_dark .submitButton { color: #0a0a0a; font-weight: 800; }
+
+/* Editorial: serif heavy, double rule */
+.variant_editorial .formCard {
+    border: none;
+    border-top: 4px double var(--theme-text);
+    border-bottom: 4px double var(--theme-text);
+    border-radius: 0;
+    padding: 40px 36px;
+}
+.variant_editorial .title { font-style: italic; font-weight: 900; }
+.variant_editorial .submitButton {
+    border-radius: 0;
+    border-bottom: 3px solid var(--theme-text);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
 }

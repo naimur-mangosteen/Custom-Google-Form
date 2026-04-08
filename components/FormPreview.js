@@ -7,15 +7,17 @@ export default function FormPreview({ form, theme = {} }) {
     // Apply theme variables dynamically to this container
     // In a real app we might pass this via style prop or a wrapper
     const style = {
-        '--theme-primary': theme.primary || '#4F46E5',
-        '--theme-bg': theme.background || '#FFFFFF',
-        '--theme-text': theme.text || '#111827',
-        '--theme-radius': theme.borderRadius || '8px',
+        '--theme-primary': theme.primary || '#0c0c0c',
+        '--theme-bg': theme.background || '#f4f1ea',
+        '--theme-text': theme.text || '#0c0c0c',
+        '--theme-accent': theme.accent || theme.primary || '#0c0c0c',
+        '--theme-radius': theme.borderRadius || '0px',
         '--theme-font': theme.fontFamily || 'inherit',
     };
+    const variant = theme.style || 'minimal';
 
     return (
-        <div className={styles.previewContainer} style={style}>
+        <div className={`${styles.previewContainer} ${styles[`variant_${variant}`] || ''}`} style={style}>
             <div className={styles.formCard}>
                 <div className={styles.header}>
                     <h1 className={styles.title}>{form.title}</h1>

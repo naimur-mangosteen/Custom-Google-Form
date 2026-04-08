@@ -30,13 +30,13 @@ export default function UrlInput() {
                 <input
                     type="text"
                     className={styles.input}
-                    placeholder="Paste Google Form link here..."
+                    placeholder="https://docs.google.com/forms/d/e/.../viewform"
                     value={url}
                     onChange={(e) => setUrl(e.target.value)}
                     disabled={loading}
                 />
                 <button type="submit" className={styles.button} disabled={loading}>
-                    {loading ? 'Loading...' : 'Customize'}
+                    {loading ? 'Loading' : 'Reframe'}
                 </button>
             </form>
         </div>

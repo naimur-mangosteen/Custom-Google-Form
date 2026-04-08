@@ -14,6 +14,11 @@ export async function GET(request) {
         return NextResponse.json(formData);
     } catch (error) {
         console.error('Parser error:', error);
+        if (error.message === 'FORM_REQUIRES_SIGNIN') {
+            return NextResponse.json({
+                error: 'This form requires Google sign-in and cannot be loaded. In the form, go to Settings → Responses and turn off "Restrict to users in [domain]" / "Collect email addresses", then share with "Anyone with the link".'
+            }, { status: 403 });
+        }
         return NextResponse.json({ error: 'Failed to parse form. Ensure it is a valid public Google Form.' }, { status: 500 });
     }
 }

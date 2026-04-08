@@ -1,52 +1,57 @@
-.wrapper {
-    margin-top: var(--spacing-xl);
-}
+.wrapper { width: 100%; }
 
 .form {
-    display: flex;
-    gap: var(--spacing-sm);
-    flex-direction: column;
+  display: flex;
+  gap: 0;
+  flex-direction: column;
+  border: 2.5px solid var(--ink);
+  background: var(--paper);
+  box-shadow: 12px 12px 0 var(--ink);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.form:focus-within {
+  transform: translate(-3px, -3px);
+  box-shadow: 15px 15px 0 var(--ink);
 }
 
 .input {
-    padding: var(--spacing-md);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    font-size: 1rem;
-    width: 100%;
+  flex: 1;
+  padding: 20px 22px;
+  border: none;
+  background: transparent;
+  font-family: var(--font-mono);
+  font-size: 17px;
+  color: var(--ink);
+  outline: none;
+  width: 100%;
 }
-
-.input:focus {
-    outline: 2px solid var(--primary);
-    border-color: transparent;
-}
+.input::placeholder { color: var(--muted); font-style: italic; }
+.input:focus { background: #fffef2; }
 
 .button {
-    padding: var(--spacing-md);
-    background-color: var(--primary);
-    color: white;
-    border: none;
-    border-radius: var(--radius-md);
-    font-size: 1rem;
-    font-weight: 600;
-    transition: background-color 0.2s;
+  position: relative;
+  padding: 20px 32px;
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: transform 0.15s ease, background 0.15s ease;
 }
-
-.button:hover {
-    background-color: var(--primary-hover);
+.button::after {
+  content: "→";
+  margin-left: 10px;
+  display: inline-block;
+  transition: transform 0.2s ease;
 }
-
-.button:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-}
+.button:hover { background: var(--accent); }
+.button:hover::after { transform: translateX(6px); }
+.button:disabled { opacity: 0.6; cursor: not-allowed; }
 
 @media (min-width: 640px) {
-    .form {
-        flex-direction: row;
-    }
-
-    .input {
-        flex: 1;
-    }
+  .form { flex-direction: row; align-items: stretch; }
+  .button { border-left: 2px solid var(--ink); }
 }
